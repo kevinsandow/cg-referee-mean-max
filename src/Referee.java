@@ -1451,7 +1451,7 @@ class Referee extends MultiReferee {
         p.put("SkillDoof", "$%d %d %d %d");
     }
 
-//    @Override
+    //    @Override
     protected boolean isGameOver() {
         if (players.stream().anyMatch(p -> p.score >= WIN_SCORE)) {
             // We got a winner !
@@ -1806,12 +1806,13 @@ abstract class AbstractReferee {
         Scanner s = new Scanner(is);
 
         try {
-            // Read ###Start 2
+            // Read ###Start 3
             s.nextLine();
-            playerCount = alivePlayerCount = 2;
-            players = new PlayerStatus[2];
+            playerCount = alivePlayerCount = 3;
+            players = new PlayerStatus[3];
             players[0] = new PlayerStatus(0);
             players[1] = new PlayerStatus(1);
+            players[2] = new PlayerStatus(2);
             playerStatus = players[0];
             currentPlayer = nextPlayer = 1;
             round = -1;
@@ -1889,12 +1890,44 @@ abstract class AbstractReferee {
             err.println(reason);
             prepare(round);
             updateScores();
-            if (players[0].score > players[1].score) {
-                out.println("###End 0 1");
-            } else if (players[0].score < players[1].score) {
-                out.println("###End 1 0");
+            if (players[0].score == players[1].score && players[1].score == players[2].score) {
+                out.println("###End 012");
+            } else if (players[0].score == players[1].score) {
+                if (players[1].score > players[2].score) {
+                    out.println("###End 01 2");
+                } else {
+                    out.println("###End 2 01");
+                }
+            } else if (players[1].score == players[2].score) {
+                if (players[0].score > players[1].score) {
+                    out.println("###End 0 12");
+                } else {
+                    out.println("###End 12 0");
+                }
+            } else if (players[0].score == players[2].score) {
+                if (players[0].score > players[1].score) {
+                    out.println("###End 02 1");
+                } else {
+                    out.println("###End 1 02");
+                }
+            } else if (players[0].score > players[1].score) {
+                if (players[0].score > players[2].score) {
+                    if (players[1].score > players[2].score) {
+                        out.println("###End 0 1 2");
+                    } else {
+                        out.println("###End 0 2 1");
+                    }
+                } else {
+                    out.println("###End 2 0 1");
+                }
+            } else if (players[1].score > players[2].score) {
+                if (players[0].score > players[2].score) {
+                    out.println("###End 1 0 2");
+                } else {
+                    out.println("###End 1 2 0");
+                }
             } else {
-                out.println("###End 01");
+                out.println("###End 2 1 0");
             }
         } finally {
             s.close();
