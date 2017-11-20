@@ -6,6 +6,7 @@ matrix:
 script:
 - javac -d . src/*.java
 - jar cfe cg-mm.jar Referee *.class
+- ls -la
 deploy:
   provider: releases
   api_key:
