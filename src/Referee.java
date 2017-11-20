@@ -1451,7 +1451,7 @@ class Referee extends MultiReferee {
         p.put("SkillDoof", "$%d %d %d %d");
     }
 
-    //    @Override
+    @Override
     protected boolean isGameOver() {
         if (players.stream().anyMatch(p -> p.score >= WIN_SCORE)) {
             // We got a winner !
@@ -1798,7 +1798,7 @@ abstract class AbstractReferee {
     @SuppressWarnings("resource")
     public void start() throws IOException {
         try {
-            handleInitInputForReferee(2, new String[0]);
+            handleInitInputForReferee(3, new String[0]);
         } catch (InvalidFormatException e) {
             return;
         }
@@ -1814,13 +1814,17 @@ abstract class AbstractReferee {
             players[1] = new PlayerStatus(1);
             players[2] = new PlayerStatus(2);
             playerStatus = players[0];
-            currentPlayer = nextPlayer = 1;
+            currentPlayer = nextPlayer = 2;
             round = -1;
             newRound = true;
 
             while (true) {
                 lastPlayer = playerStatus;
                 playerStatus = nextPlayer();
+
+                if (this.isGameOver()) {
+                    throw new GameOverException("maxPointsReached");
+                }
 
                 if (this.round >= getMaxRoundCount(this.playerCount)) {
                     throw new GameOverException("maxRoundsCountReached");
@@ -2125,6 +2129,8 @@ abstract class AbstractReferee {
     }
 
     protected abstract void handleInitInputForReferee(int playerCount, String[] init) throws InvalidFormatException;
+
+    protected abstract boolean isGameOver();
 
     protected abstract String[] getInitDataForView();
 
