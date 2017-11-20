@@ -3,6 +3,9 @@ install: true
 matrix:
   include:
   - jdk: oraclejdk9
+branches:
+  only:
+  - master
 script:
 - javac -d . src/*.java
 - jar cfe cg-mm.jar Referee *.class
@@ -14,3 +17,4 @@ deploy:
   file: ./cg-mm.jar
   on:
     repo: KevinBusse/cg-referee-mean-max
+    all_branches: true
