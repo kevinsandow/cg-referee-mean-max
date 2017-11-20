@@ -11,6 +11,6 @@ deploy:
   provider: releases
   api_key:
     secure: Vb/Qz0Tr9BNlsbdaJsjec5hI/FbZfAUhmTPQAHrE/FvWR5rtu+fcE0m1AIT+fD9s00KAdPp4PIKG7Pqlcd77KHcbTRDacImhQoFKczBlCUwoCzWj/Bvyk+jHYW4BpZ6a5OweN0D3bq6g20wR+MfPEAfhSHKrfyDRmzpSNatm1MeA4/wRTlkTvs/4XCqS7SNmHveRDgHrvFR+0CJ/7ADRXQI5uwwMypFj20/Hbdsc/UCwwENqmkP3ltnTDGNYZGqyVSTiFdgACyk47VAfJy0o5PrKiFx54kIleVL4HH9krNtBWIjvzRm3y9MASq0VP8NuVL+OVsfeTB/z3PnIgA75BL15EQOwpwtYqNw01pIDRGeFpPB98eTuRCmsNb/wLeU1HwUdxXQWFwCRWvDfb/y7Jm1BTgYpCto5lqRrHDnR92NvO4Hybz6TT+/wmfaYTjlR8aD88nhN+p8toyxUo3fUxovUkopGiHHxVHVV2j7esS131wAtMfap9WJjXMzOuYHkNuqkPh8y0mCSanQXdSRTW6G9xmIBD56sy5PumtuqJa0vj3vkH8ugP6uNvEI9iBVqbpw8jQB1nBpBSmRMzYWdzzjwQeapK0pePg6bioderXO/9X94zUxAoQtu34DFZyjRN0q3BA316XOs5RF/a1Rrd65bvaG2Twd4mYnrNIh+IUs=
-  file: cg-mm.jar
+  file: ./cg-mm.jar
   on:
     repo: KevinBusse/cg-referee-mean-max
